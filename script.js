@@ -113,7 +113,7 @@ var op="";
         */
         indNombre=1;
 
-        nombres = op.split(/[*+-/]/);
+        nombres = op.split(/[*+/-]/);
         
         if(nombres.length===0){
             res="err"; 
