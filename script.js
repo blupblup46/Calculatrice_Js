@@ -113,16 +113,29 @@ var op="";
         */
         indNombre=1;
 
-        nombres = op.split(/[*+/-]/);
-        
+        nombres = op.split(/[-+*/]/);
+
+        ecran.innerHTML= "e1.1";
+
         if(nombres.length===0){
             res="err"; 
-            ecran.innerHTML= "e1.1";
-        }else{
-        
-            res = parseInt(nombres[0]);
-        }        
+            ecran.innerHTML= "e1.2";
 
+        }else{
+            if(nombres[0]=='' && op.charAt(0)=='-'){
+                ecran.innerHTML= "e1.3";
+
+                nombres=nombres.reverse();
+                ecran.innerHTML= nombres;
+                nombres.pop()
+                nombres.push(0);
+                nombres=nombres.reverse();
+            }
+            ecran.innerHTML= nombres;
+
+            res = parseInt(nombres[0]);
+        }     
+        
         for (boucle=0; boucle< op.length; boucle++){
             pointeur = op.charAt(boucle);
             ecran.innerHTML= "e2";
@@ -149,6 +162,7 @@ var op="";
                 }
                     
                     res = res - parseInt(nombres[indNombre]);
+                    indNombre+=1;
                     break;
 
                 case "*":
@@ -158,6 +172,7 @@ var op="";
                         boucle= op.length+1;
                     }
                     res = res * parseInt(nombres[indNombre]);
+                    indNombre+=1;
                     break;
 
                 case "/":
@@ -166,7 +181,8 @@ var op="";
                         res= "err";
                         boucle= op.length+1;
                     }
-                    res = res / parseInt(nombres[indNombre]);
+                    res = res / parseInt(nombres[indNombre]);                    
+                    indNombre+=1;
                     break;
             }
         }
